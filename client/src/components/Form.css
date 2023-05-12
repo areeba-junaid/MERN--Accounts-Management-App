@@ -1,0 +1,58 @@
+.form-container{
+    margin: 50px;
+    width:95%;
+    height: 500px;
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+.form-div{
+        width: 50%;
+        height: 100%;
+        padding: 2px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 50px;
+        border: solid 1px rgb(131, 113, 113);
+        background-color: rgb(32, 21, 5);
+        border-radius: 10%;
+        color: white;
+
+    }
+
+.form{
+    height:80%;
+    width:90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: rgb(96, 96, 247);
+    padding:50px;
+    border-radius: 10%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+    color: white;
+    
+}
+
+.inputs>input, select ,[type=submit]{
+    width:100%;
+    padding:10px;
+    border-radius: 10px;
+    margin:2px;
+
+}
+
+[type=submit]{
+    background-color: rgb(11, 196, 11);
+    font-weight: bold;
+    color: rgb(7, 7, 7);
+    font-size: 18px;
+}
+
+
+
+
