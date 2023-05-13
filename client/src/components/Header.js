@@ -1,38 +1,48 @@
-import "./Header.css"
-
+import "./Header.css";
+import { Link } from "react-router-dom";
 export default function Header() {
-    return (
-        <div class="menu-bar">
-        <h1 class="logo">Accounts<span>Management.</span></h1>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Pages <i class="fas fa-caret-down"></i></a>
-              <div class="dropdown-menu">
-                  <ul>
-                    <li><a href="#">Pricing</a></li>
-                    <li><a href="#">Portfolio</a></li>
-                    <li>
-                      <a href="#">Team <i class="fas fa-caret-right"></i></a>
-                      
-                      <div class="dropdown-menu-1">
-                        <ul>
-                          <li><a href="#">Team-1</a></li>
-                          <li><a href="#">Team-2</a></li>
-                          <li><a href="#">Team-3</a></li>
-                          <li><a href="#">Team-4</a></li>
-                        </ul>
-                      </div>
-                    </li>
-                    <li><a href="#">FAQ</a></li>
-                  </ul>
-                </div>
-          </li>
-          <li><a href="#">Blog</a>
-          </li>
-          <li><a href="#">Contact us</a></li>
-        </ul>
-      </div>
-  
-    )
+  return (
+    <nav class="menu-bar">
+      <h1 class="logo">
+        Accounts<span>Management.</span>
+      </h1>
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/transaction">Transactions</Link>
+        </li>
+        <li>
+          <Link>
+            Financial Statements <i class="fas fa-caret-down"></i>
+          </Link>
+          <div class="dropdown-menu">
+            <ul>
+              <li>
+                <Link to="income">Income</Link>
+              </li>
+              <li>
+                <Link to="owner-equity">Owner Equity</Link>
+              </li>
+              <li>
+                <Link to="balance-sheet">
+                  Balance sheet<i class="fas fa-caret-right"></i>
+                </Link>
+              </li>
+              <li>
+                <Link to="cash-flow">Cash Flow</Link>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li>
+          <a href="#">Blog</a>
+        </li>
+        <li>
+          <a href="#">Contact us</a>
+        </li>
+      </ul>
+    </nav>
+  );
 }
