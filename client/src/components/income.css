@@ -1,0 +1,40 @@
+.head-container{
+    display: flex;
+    background-color: rgb(96, 96, 247);
+    border: 2px solid black;
+    height: 70px;
+    align-items: center;
+    justify-content: center;
+}
+
+.table-container{
+    display: flex;
+    background-color:rgb(236, 231, 231);
+    height: 525px;
+}
+
+.table-column{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    border: 2px solid black;
+    align-items: center;
+    padding: 10px;
+
+}
+
+.total-container{
+    display: flex;
+    background-color: rgb(236, 231, 231);
+    height: 70px;
+
+
+}
+
+.total-column1{
+    display: flex;
+    width: 100%;
+    border: 2px solid black;
+    align-items: center;
+
+}
