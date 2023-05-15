@@ -3,10 +3,12 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors=require("cors");
 const app = express();
-
+//routes import
 const account_route = require("./Routes/Account"); //route
 const transaction_route = require("./Routes/Transaction");
-const accounts_route=require("./Routes/AccountInfo")
+const accounts_route=require("./Routes/AccountInfo");
+const close_route=require("./Routes/Close");
+//port
 const port = process.env.PORT || 5000;
 
 connection=mongoose.connect("mongodb://127.0.0.1:27017/myAccount").then(() => {
@@ -14,12 +16,13 @@ connection=mongoose.connect("mongodb://127.0.0.1:27017/myAccount").then(() => {
   })
 
 
-;//use middleware
+//use middleware
 app.use(cors({origin:true,credentials:false}));
 app.use(express.json({ extended: true }));
 app.use("/api/accounts", account_route);
 app.use("/api/transaction", transaction_route);
 app.use("/api/account-info", accounts_route);
+app.use("/api/close", close_route);
 
 //Listening to our Servers
 try {

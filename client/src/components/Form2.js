@@ -1,11 +1,11 @@
 import axios from "axios";
+import Closebutton from "./Closebutton";
 import { useContext,useEffect } from "react";
 import { AccountContext } from "../Context/AccountContext";
 
-
 function Form2() {
   const { account,info,setInfo} = useContext(AccountContext);
-
+  
   function submitHandler  (e) {
     e.preventDefault();
      if(info.length===0)
@@ -40,7 +40,9 @@ function Form2() {
     .catch((err) => console.log(err));
     console.log("info",info);
   }, [account]);
-
+  const buttonHandler=()=>{
+     console.log("hello");
+  }
   return (
     <div className="form-container">
       <div className="form-div">
@@ -73,7 +75,8 @@ function Form2() {
                  <input type="radio" id="adjusted" name="entry" value="1"/>
                  <label htmlFor="adjusted">  Adjusted</label><br/>
            </div>
-          <input className="inputs" type="submit" />
+           <input className="inputs" type="submit" />
+           <Closebutton buttonHandler={buttonHandler}/>
         </form>
       </div>
     </div>
