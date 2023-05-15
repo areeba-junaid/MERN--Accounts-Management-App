@@ -8,12 +8,11 @@ import OwnerEquity from "./components/OwnerEquity.js"
 import Balancesheet from "./components/Blancesheet.js"
 import Cashflow from "./components/Cashflow.js"
 import { AccountContext } from "./Context/AccountContext";
-
 import {Route,Routes} from "react-router-dom"
 import { useState } from "react";
 
 function App() {
-  const[account,setAccount]=useState();
+  const[account,setAccount]=useState([]);
   const[info,setInfo]=useState([]);
   return (
     <div className="App">

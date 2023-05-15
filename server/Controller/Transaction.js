@@ -22,7 +22,8 @@ const saveTransaction = async (req, res) => {
 
 const getTransaction = async (req, res) => {
   try {
-    const transactions = await Transaction.find();
+    const transactions = await Transaction.find({},{__v:0,_id:0});
+    console.log(transactions)
     res.send(transactions);
   } catch (e) {
     console.log(e.message);

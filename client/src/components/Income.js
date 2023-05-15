@@ -1,22 +1,18 @@
 import axios from "axios";
-import {useEffect } from "react";
+import {useEffect,useState } from "react";
+import "./income.css";
 
 function Income() {
-  //function for calculation
-  function hello(info){
-    console.log("hello",info);
-  }
-
-  //useeffect
-  useEffect(() => {
+  const [data,setData]=useState([]);
+ useEffect(() => {
     axios
     .get("http://localhost:5000/api/account-info/get").then((res)=>
-    { console.log("res",res.data);
-      hello(res.data);
+    {  console.log("res",res.data);
+       setData(res.data);
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.log("error from show Incomw"));
   }, []);
-
+  console.log("data", data);
   return (
     <>
     <div className='head-container'>

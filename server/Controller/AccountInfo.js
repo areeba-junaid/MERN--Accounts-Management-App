@@ -22,7 +22,7 @@ const saveAccounts=async(req,res)=>{
 const getAccount=async(req,res)=>{
   let allAccounts
   try {
-    allAccounts = await AccountInfo.find();
+    allAccounts = await AccountInfo.find({flag:1});
     console.log(allAccounts);
   } catch (e) {
     console.log(e.message);
@@ -32,12 +32,10 @@ const getAccount=async(req,res)=>{
      const account= await mongoose
     .model(item.name, accountSchema)
     .findOne({ accountNumber: item.accountNumber },{_id:0,__v: 0});
-    console.log("hi",account);
-   // id++
-    
+    console.log("hi",account); 
     return (account);
   }));
-  console.log(data);
+ 
   res.send(data);
 };
 

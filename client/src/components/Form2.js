@@ -4,7 +4,7 @@ import { AccountContext } from "../Context/AccountContext";
 
 
 function Form2() {
-  const { account,setAccount,info, setInfo } = useContext(AccountContext);
+  const { account,info,setInfo} = useContext(AccountContext);
 
   function submitHandler  (e) {
     e.preventDefault();
@@ -34,7 +34,7 @@ function Form2() {
       })
       .catch((err) => console.log(err));
   };
-  useEffect(() => {
+ useEffect(() => {
     axios
     .get("http://localhost:5000/api/account-info/get").then((res)=>setInfo(res.data))
     .catch((err) => console.log(err));
