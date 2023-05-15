@@ -1,28 +1,34 @@
 //Imports
 const mongoose = require("mongoose");
 const { accountSchema } = require("../Models/Account_db");
+const ID = require("nodejs-unique-numeric-id-generator")
 
 //Function for  account create route
-const createAccount = async (req, res) => {
+
+
+const createAccount = async (req, res,next) => {
   let reqData = req.body;
-  console.log(reqData);
   //T-account Name
-  const collectionName = reqData.accountName;
+  const collectionName = reqData.name;
   //create model
   const myaccount = mongoose.model(collectionName, accountSchema);
-  const storeData = new myaccount({
+  //save data
+  const store = new myaccount({
+    name: reqData.name,
     flag: reqData.flag,
-    accountNumber: reqData.accountNumber,
+    accountNumber: ID.generate(new Date().toJSON()),
     headNo: reqData.headNo,
-    debit: [],
-    credit: [],
-    sumDebit: reqData.sumDebit,
-    sumCredit: reqData.sumCredit,
+    sumDebit: 0,
+    sumCredit: 0,
   });
-  await storeData.save();
-  res.send(storeData);
+  await store.save();
+  reqData.accountNumber=store.accountNumber;
+  res.json(reqData);
+  next();
 };
 
+
+//Function for account update
 const updateAccount = async (req, res, next) => {
   let reqData = req.body;
   let accountName = req.body.accountNameDebit;
@@ -64,11 +70,14 @@ const updateAccount = async (req, res, next) => {
     } catch (e) {
       console.log(e.message);
     }
-    res.send({ credit: T_account_credit, debit: T_account_debit });
+    res.send({  T_account_credit , T_account_debit});
     next();
   } else {
     console.log("account doesn't exist");
   }
 };
 
-module.exports = { createAccount, updateAccount };
+module.exports={createAccount,updateAccount}
+
+
+

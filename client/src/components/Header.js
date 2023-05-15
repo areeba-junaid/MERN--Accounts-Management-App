@@ -2,8 +2,8 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 export default function Header() {
   return (
-    <nav class="menu-bar">
-      <h1 class="logo">
+    <nav className="menu-bar">
+      <h1 className="logo">
         Accounts<span>Management.</span>
       </h1>
       <ul>
@@ -15,9 +15,9 @@ export default function Header() {
         </li>
         <li>
           <Link>
-            Financial Statements <i class="fas fa-caret-down"></i>
+            Financial Statements <i className="fas fa-caret-down"></i>
           </Link>
-          <div class="dropdown-menu">
+          <div className="dropdown-menu">
             <ul>
               <li>
                 <Link to="income">Income</Link>
@@ -27,7 +27,7 @@ export default function Header() {
               </li>
               <li>
                 <Link to="balance-sheet">
-                  Balance sheet<i class="fas fa-caret-right"></i>
+                  Balance sheet<i className="fas fa-caret-right"></i>
                 </Link>
               </li>
               <li>

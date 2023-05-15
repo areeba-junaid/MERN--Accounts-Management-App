@@ -1,6 +1,22 @@
-import React from 'react'
+import axios from "axios";
+import {useEffect } from "react";
 
 function Income() {
+  //function for calculation
+  function hello(info){
+    console.log("hello",info);
+  }
+
+  //useeffect
+  useEffect(() => {
+    axios
+    .get("http://localhost:5000/api/account-info/get").then((res)=>
+    { console.log("res",res.data);
+      hello(res.data);
+    })
+    .catch((err) => console.log(err));
+  }, []);
+
   return (
     <>
     <div className='head-container'>

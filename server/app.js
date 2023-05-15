@@ -1,25 +1,25 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const cors=require("cors");
 const app = express();
 
 const account_route = require("./Routes/Account"); //route
 const transaction_route = require("./Routes/Transaction");
+const accounts_route=require("./Routes/AccountInfo")
 const port = process.env.PORT || 5000;
 
-const connection = mongoose
-  .connect("mongodb://127.0.0.1:27017/my_Accounts")
-  .then(() => {
+connection=mongoose.connect("mongodb://127.0.0.1:27017/myAccount").then(() => {
     console.log("connected");
-  });
+  })
 
-console.log(Date.now());
 
-//use middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+;//use middleware
+app.use(cors({origin:true,credentials:false}));
+app.use(express.json({ extended: true }));
 app.use("/api/accounts", account_route);
 app.use("/api/transaction", transaction_route);
+app.use("/api/account-info", accounts_route);
 
 //Listening to our Servers
 try {

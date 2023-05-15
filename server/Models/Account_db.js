@@ -1,6 +1,10 @@
 const mongoose = require("mongoose");
 
 const accountSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    lowercase:true,
+  },
   flag: {
     type: Boolean,
     required: true,
