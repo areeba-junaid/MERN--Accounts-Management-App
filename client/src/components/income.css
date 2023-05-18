@@ -38,3 +38,7 @@
     align-items: center;
 
 }
+
+.line{
+    border-top: 1px solid black;
+}

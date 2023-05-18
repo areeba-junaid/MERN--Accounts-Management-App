@@ -13,6 +13,17 @@ function Income() {
     .catch((err) => console.log("error from show Incomw"));
   }, []);
   console.log("data", data);
+
+  const calculateNetIncome = () => {
+    const revenueData = data.filter(item => item.headNo === 5);
+    const expenseData = data.filter(item => item.headNo === 6);
+
+    const revenueTotal = revenueData.reduce((total, item) => total + item.sumCredit - item.sumDebit, 0);
+    const expenseTotal = expenseData.reduce((total, item) => total + item.sumCredit - item.sumDebit, 0);
+
+    return revenueTotal - expenseTotal;
+  };
+
   return (
     <>
     <div className='head-container'>
@@ -22,22 +33,32 @@ function Income() {
         <div className='table-column'>
           <h2>Revenues</h2>
           <ul className='l1'>
-            <li>All revenues</li>
+{data.map((item, index) => (
+          item.headNo === 5 && (
+            <li key={index}>
+              {item.name}
+            </li>
+          )
+        ))}
           </ul>
         </div>
         <div className='table-column'>
           <h2>Expenses</h2>
           <ul className='l1'>
-            <li>All expenses</li>
+          {data.map((item, index) => (
+          item.headNo === 6 && (
+            <li key={index}>
+              {item.name}
+            </li>
+          )
+        ))}
           </ul>
         </div>
       </div> 
       <div className='total-container'>
           <div className='total-column1'>
             <h3>Net income: </h3>
-            <ul className='list'>
-              <li>$0.00</li>
-            </ul>
+            <p>Net Income:  ${calculateNetIncome()}</p>
           </div>
         </div>  
       </>   

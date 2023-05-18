@@ -29,6 +29,7 @@ const accountSchema = new mongoose.Schema({
     required: true,
     min: 0,
   },
+
 });
 
 module.exports = { accountSchema };

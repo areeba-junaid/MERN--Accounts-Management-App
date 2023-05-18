@@ -12,7 +12,7 @@ function Transaction() {
         console.log("res", res.data);
         setData(res.data);
       })
-      .catch((err) => console.log("error from show Transactio"));
+      .catch((err) => console.log("error from show Transaction"));
   }, []);
   return (
     <>
@@ -23,25 +23,41 @@ function Transaction() {
         <div className="transaction-table">
           <h3>Date</h3>
           <ul className="list1">
-            <li>14/05/2023</li>
+            {data.map((data, index) => (
+              <li key={index}>{data.date}</li>
+            ))}
           </ul>
         </div>
         <div className="transaction-table">
-          <h3>Debit</h3>
+          <h3>Flag</h3>
           <ul className="list2">
-            <li>debit account</li>
+          {data.map((data, index) => (
+              <li key={index}>{data.entry === true ? 'Adjusted' : 'Normal'}</li>
+            ))}
           </ul>
         </div>
         <div className="transaction-table">
-          <h3>Credit</h3>
+          <h3>Debit Account</h3>
           <ul className="list3">
-            <li>credit account</li>
+          {data.map((data, index) => (
+              <li key={index}>{data.debitAccountName}</li>
+            ))}
+          </ul>
+        </div>
+        <div className="transaction-table">
+          <h3>Credit Account</h3>
+          <ul className="list4">
+          {data.map((data, index) => (
+              <li key={index}>{data.creditAccountName}</li>
+            ))}
           </ul>
         </div>
         <div className="transaction-table">
           <h3>Amount</h3>
-          <ul className="list4">
-            <li>$0.00</li>
+          <ul className="list5">
+          {data.map((data, index) => (
+              <li key={index}>{data.amount}</li>
+            ))}
           </ul>
         </div>
       </div>
