@@ -18,7 +18,7 @@ function Blancesheet() {
 
   const calculateTotalAssets = () => {
     const assetsData = data.filter(item => item.headNo === 1);
-    const totalAssets = assetsData.reduce((total, item) => total + (item.sumCredit - item.sumDebit), 0);
+    const totalAssets = assetsData.reduce((total, item) => total + ( item.sumDebit -item.sumCredit), 0);
     return totalAssets;
   };
 

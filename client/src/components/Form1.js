@@ -7,8 +7,11 @@ function Form1() {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    
     let name = event.target.name.value.toLowerCase();
+    if (name==null)
+    {
+      return;
+    }
     name = name.replace(/\s+/g, '');
     if(info.length>0){
         for(let i=0;i<info.length;i++)
@@ -50,8 +53,8 @@ function Form1() {
             <input
               name="name"
               type="text"
-              minLength="5"
-              maxLength="15"
+              minLength="2"
+              maxLength="30"
               required
             />
           </div>

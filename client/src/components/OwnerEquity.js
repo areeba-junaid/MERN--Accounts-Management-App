@@ -18,7 +18,7 @@ function OwnerEquity() {
     const revenueData = data.filter(item => item.headNo === 5);
     const expenseData = data.filter(item => item.headNo === 6);
     const revenueTotal = revenueData.reduce((total, item) => total + item.sumCredit - item.sumDebit, 0);
-    const expenseTotal = expenseData.reduce((total, item) => total + item.sumCredit - item.sumDebit, 0);
+    const expenseTotal = expenseData.reduce((total, item) => total + item.sumDebit - item.sumCredit , 0);
     return revenueTotal - expenseTotal;
   };
 
@@ -33,7 +33,7 @@ function OwnerEquity() {
   const calculateOwnerWithDrawal = () => {
     const ownerWithDrawalData = data.find(item => item.headNo === 4);
     if (ownerWithDrawalData) {
-      return ownerWithDrawalData.sumCredit - ownerWithDrawalData.sumDebit ;
+      return ownerWithDrawalData.sumDebit- ownerWithDrawalData.sumCredit  ;
     }
     return null;
   };
@@ -57,9 +57,10 @@ function OwnerEquity() {
 
 
     const ownerWithdrawalTotal = ownerWithdrawalTransactions.reduce(
-      (total, data) => total + data.sumCredit - data.sumDebit,
+      (total, data) => total + data.sumDebit -data.sumCredit,
       0
     );
+    console.log(ownerWithdrawalTotal);
 
     const ownerEquity = ownerCapitalTotal + netIncomeTransactions - ownerWithdrawalTotal;
 

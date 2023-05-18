@@ -19,7 +19,7 @@ function Income() {
     const expenseData = data.filter(item => item.headNo === 6);
 
     const revenueTotal = revenueData.reduce((total, item) => total + item.sumCredit - item.sumDebit, 0);
-    const expenseTotal = expenseData.reduce((total, item) => total + item.sumCredit - item.sumDebit, 0);
+    const expenseTotal = expenseData.reduce((total, item) => total + item.sumDebit -item.sumCredit , 0);
 
     return revenueTotal - expenseTotal;
   };
