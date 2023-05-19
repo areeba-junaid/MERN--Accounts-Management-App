@@ -54,26 +54,17 @@ function Blancesheet() {
 
   const calculateOwnerEquity = () => {
     const ownerCapitalTransactions = calculateOwnerCapital()
-
     const netIncomeTransactions = calculateNetIncome()
-      
-
     const ownerWithdrawalTransactions = calculateOwnerWithDrawal()
-
-    
-
     const ownerEquitybeg = ownerCapitalTransactions  + netIncomeTransactions ;
     const ownerEquity = ownerEquitybeg - ownerWithdrawalTransactions;
-
     return ownerEquity;
   };
-
 
   const calculateTotalLiabilitiesAndEquity = () => {
     const totalLiabilities = calculateTotalLiabilities();
     const ownerEquity = calculateOwnerEquity();
     const totalliability = totalLiabilities + ownerEquity;
-
     return totalliability;
   };
 

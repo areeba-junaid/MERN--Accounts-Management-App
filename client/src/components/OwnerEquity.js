@@ -40,17 +40,10 @@ function OwnerEquity() {
 
   const calculateOwnerEquity = () => {
     const ownerCapitalTransactions = calculateOwnerCapital()
-
     const netIncomeTransactions = calculateNetIncome()
-      
-
     const ownerWithdrawalTransactions = calculateOwnerWithDrawal()
-
-    
-
     const ownerEquitybeg = ownerCapitalTransactions  + netIncomeTransactions ;
     const ownerEquity = ownerEquitybeg - ownerWithdrawalTransactions;
-
     return ownerEquity;
   };
 
