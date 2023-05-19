@@ -18,7 +18,7 @@ function OwnerEquity() {
     const revenueData = data.filter(item => item.headNo === 5);
     const expenseData = data.filter(item => item.headNo === 6);
     const revenueTotal = revenueData.reduce((total, item) => total + item.sumCredit - item.sumDebit, 0);
-    const expenseTotal = expenseData.reduce((total, item) => total + item.sumDebit - item.sumCredit , 0);
+    const expenseTotal = expenseData.reduce((total, item) => total + item.sumDebit - item.sumCredit, 0);
     return revenueTotal - expenseTotal;
   };
 
@@ -33,37 +33,17 @@ function OwnerEquity() {
   const calculateOwnerWithDrawal = () => {
     const ownerWithDrawalData = data.find(item => item.headNo === 4);
     if (ownerWithDrawalData) {
-      return ownerWithDrawalData.sumDebit- ownerWithDrawalData.sumCredit  ;
+      return ownerWithDrawalData.sumDebit - ownerWithDrawalData.sumCredit ;
     }
     return null;
   };
 
   const calculateOwnerEquity = () => {
-    const ownerCapitalTransactions = data.filter(
-      data => data.headNo === 3
-    );
-
+    const ownerCapitalTransactions = calculateOwnerCapital()
     const netIncomeTransactions = calculateNetIncome()
-      
-
-    const ownerWithdrawalTransactions = data.filter(
-      data => data.category === 4
-    );
-
-    const ownerCapitalTotal = ownerCapitalTransactions.reduce(
-      (total, data) => total + data.sumCredit - data.sumDebit,
-      0
-    );
-
-
-    const ownerWithdrawalTotal = ownerWithdrawalTransactions.reduce(
-      (total, data) => total + data.sumDebit -data.sumCredit,
-      0
-    );
-    console.log(ownerWithdrawalTotal);
-
-    const ownerEquity = ownerCapitalTotal + netIncomeTransactions - ownerWithdrawalTotal;
-
+    const ownerWithdrawalTransactions = calculateOwnerWithDrawal()
+    const ownerEquitybeg = ownerCapitalTransactions  + netIncomeTransactions ;
+    const ownerEquity = ownerEquitybeg - ownerWithdrawalTransactions;
     return ownerEquity;
   };
 
@@ -78,7 +58,7 @@ function OwnerEquity() {
           <h1>Net income: ${calculateNetIncome()}</h1>
           <h1>Owner withdrawal: (${calculateOwnerWithDrawal()})</h1>
           <div className="line"></div>
-          <h1>Ending balance: ${calculateOwnerEquity()}</h1>
+          <h1>Ending balance: {calculateOwnerEquity()}</h1>
           </div>
         </div>  
       </>   
