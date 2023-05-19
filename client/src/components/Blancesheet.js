@@ -24,7 +24,7 @@ function Blancesheet() {
 
   const calculateTotalLiabilities = () => {
     const liabilitiesData = data.filter(item => item.headNo === 2);
-    const totalLiabilities = liabilitiesData.reduce((total, item) => total + (item.sumDebit - item.sumCredit), 0);
+    const totalLiabilities = liabilitiesData.reduce((total, item) => total + ( item.sumCredit - item.sumDebit), 0);
     return totalLiabilities;
   };
 
@@ -92,7 +92,7 @@ function Blancesheet() {
           {data.map((item, index) => (
           item.headNo === 2 && (
             <li key={index}>
-              {item.name} | {item.sumDebit - item.sumCredit}
+              {item.name} | {item.sumCredit - item.sumDebit}
             </li>
           )
           ))}

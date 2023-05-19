@@ -3,15 +3,16 @@ import { useContext } from "react";
 import { AccountContext } from "../Context/AccountContext";
 
 function Form1() {
-  const { account, setAccount,info } = useContext(AccountContext);
+  const { setAccount,info } = useContext(AccountContext);
 
   const submitHandler = (event) => {
     event.preventDefault();
-    let name = event.target.name.value.toLowerCase();
-    if (name==null)
+    let name = event.target.name.value;
+    if (name===null)
     {
       return;
     }
+    name=name.toLowerCase();
     name = name.replace(/\s+/g, '');
     if(info.length>0){
         for(let i=0;i<info.length;i++)
