@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 
 const accountSchema = new mongoose.Schema({
+  date: { type: String, default: Date },
   name: {
     type: String,
-    lowercase:true,
+    lowercase: true,
   },
   flag: {
     type: Boolean,
@@ -29,7 +30,6 @@ const accountSchema = new mongoose.Schema({
     required: true,
     min: 0,
   },
-
 });
 
 module.exports = { accountSchema };

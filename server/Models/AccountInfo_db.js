@@ -13,6 +13,10 @@ const accountInfoSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  headNo: {
+    type: Number,
+    required: true,
+  }
 })
 
 module.exports=mongoose.model('AccountInfo',accountInfoSchema);

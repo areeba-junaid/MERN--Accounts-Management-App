@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 
 const transactionSchema = new mongoose.Schema({
-  date: { type: Date, default: Date },
+  date: { type: String, default: Date },
   entry: { type: Boolean, required: true }, //normal 0 or adjusted 1
   debitAccountNo: { type: Number, required: true },
   creditAccountNo: { type: Number, required: true },

@@ -8,11 +8,12 @@ const saveAccounts=async(req,res)=>{
     const storeData = new AccountInfo({
         name: reqData.name,
         flag: reqData.flag,
-        accountNumber: reqData.accountNumber
+        headNo:reqData.headNo,
+        accountNumber: reqData.accountNumber,
+        
   });
   try {
     await storeData.save();
-    console.log(storeData);
   } catch (e) {
     console.log(e.message);
   }
@@ -23,7 +24,6 @@ const getAccount=async(req,res)=>{
   let allAccounts
   try {
     allAccounts = await AccountInfo.find({flag:1});
-    console.log(allAccounts);
   } catch (e) {
     console.log(e.message);
   }
@@ -32,7 +32,6 @@ const getAccount=async(req,res)=>{
      const account= await mongoose
     .model(item.name, accountSchema)
     .findOne({ accountNumber: item.accountNumber },{_id:0,__v: 0});
-    console.log("hi",account); 
     return (account);
   }));
  

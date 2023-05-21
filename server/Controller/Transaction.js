@@ -1,10 +1,13 @@
 const mongoose = require("mongoose");
 const Transaction = require("../Models/Transaction_db");
+const moment = require('moment');
 
 const saveTransaction = async (req, res) => {
   let reqData = req.body;
+  date=Date.now();
+  const formattedDate = moment(date).format('DD/MM/YYYY, HH:mm:ss');
   const storeData = new Transaction({
-    date: Date.now(),
+    date: formattedDate,
     entry: reqData.entry, //normal 0 or adjusted 1
     debitAccountNo: reqData.accNumDebit,
     creditAccountNo: reqData.accNumCredit,
@@ -14,7 +17,6 @@ const saveTransaction = async (req, res) => {
   });
   try {
     await storeData.save();
-    console.log(storeData);
   } catch (e) {
     console.log(e.message);
   }
@@ -23,7 +25,6 @@ const saveTransaction = async (req, res) => {
 const getTransaction = async (req, res) => {
   try {
     const transactions = await Transaction.find({},{__v:0,_id:0});
-    console.log(transactions)
     res.send(transactions);
   } catch (e) {
     console.log(e.message);

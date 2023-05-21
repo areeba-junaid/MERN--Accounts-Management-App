@@ -2,18 +2,20 @@
 const mongoose = require("mongoose");
 const { accountSchema } = require("../Models/Account_db");
 const ID = require("nodejs-unique-numeric-id-generator")
+const moment = require('moment');
 
 //Function for  account create route
-
-
 const createAccount = async (req, res,next) => {
   let reqData = req.body;
+  date=Date.now();
+  const formattedDate = moment(date).format('DD/MM/YYYY, HH:mm:ss');
   //T-account Name
   const collectionName = reqData.name;
   //create model
   const myaccount = mongoose.model(collectionName, accountSchema);
   //save data
   const store = new myaccount({
+    date: formattedDate,
     name: reqData.name,
     flag: reqData.flag,
     accountNumber: ID.generate(new Date().toJSON()),
@@ -42,7 +44,6 @@ const updateAccount = async (req, res, next) => {
     T_account_debit = await mongoose
       .model(accountName, accountSchema)
       .findOne({ accountNumber: reqData.accNumDebit });
-    console.log(T_account_debit);
   } catch (e) {
     console.log(e.message);
   }
@@ -54,7 +55,6 @@ const updateAccount = async (req, res, next) => {
     T_account_credit = await mongoose
       .model(accountName, accountSchema)
       .findOne({ accountNumber: reqData.accNumCredit });
-    console.log(T_account_credit);
   } catch (e) {
     console.log(e.message);
   }
@@ -66,7 +66,7 @@ const updateAccount = async (req, res, next) => {
     try {
       await T_account_debit.save();
       await T_account_credit.save();
-      console.log("saved");
+      console.log("Transaction success")
     } catch (e) {
       console.log(e.message);
     }
