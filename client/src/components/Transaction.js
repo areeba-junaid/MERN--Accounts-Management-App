@@ -1,64 +1,69 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import "./transaction.css";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import axios from 'axios';
+import ReactTable from 'react-table-6';
+import 'react-table-6/react-table.css';
 
-function Transaction() {
+export function Transaction() {
   const [data, setData] = useState([]);
+  const columns = [
+    {
+      Header: 'Date',
+      accessor: 'date',
+      Cell: ({ value }) => <div style={{ textAlign: 'center' }}>{value}</div>,
+    },
+    {
+      Header: 'Flag',
+      accessor: 'entry',
+      Cell: ({ value }) => (
+        <div style={{ textAlign: 'center' }}>{value ? 'Adjusted' : 'Normal'}</div>),
+    },
+    {
+      Header: 'Debit Account',
+      accessor: 'debitAccountName',
+      Cell: ({ value }) => <div style={{ textAlign: 'center' }}>{value}</div>,
+    },
+    {
+      Header: 'Credit Account',
+      accessor: 'creditAccountName',
+      Cell: ({ value }) => <div style={{ textAlign: 'center' }}>{value}</div>,
+
+    },
+    {
+      Header: 'Amount',
+      accessor: 'amount',
+      Cell: ({ value }) => <div style={{ textAlign: 'center' }}>{value}</div>,
+    },
+  ];
+
   useEffect(() => {
-    axios
-      .get("http://localhost:5000/api/transaction/get")
-      .then((res) => {
-        console.log("res", res.data);
-        setData(res.data);
-      })
-      .catch((err) => console.log("error from show Transaction"));
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/api/transaction/get');
+        setData(response.data);
+        console.log(data)
+      } catch (error) {
+        console.log('Error from show Transaction', error);
+      }
+    };
+
+    fetchData();
   }, []);
+
   return (
     <>
-      <div className="head-container">
-        <h1>Transaction/ General journal</h1>
-      </div>
-      <div className="transaction-container">
-        <div className="transaction-table">
-          <h3>Date</h3>
-          <ul className="list1">
-            {data.map((data, index) => (
-              <li key={index}>{data.date}</li>
-            ))}
-          </ul>
-        </div>
-        <div className="transaction-table">
-          <h3>Flag</h3>
-          <ul className="list2">
-          {data.map((data, index) => (
-              <li key={index}>{data.entry === true ? 'Adjusted' : 'Normal'}</li>
-            ))}
-          </ul>
-        </div>
-        <div className="transaction-table">
-          <h3>Debit Account</h3>
-          <ul className="list3">
-          {data.map((data, index) => (
-              <li key={index}>{data.debitAccountName}</li>
-            ))}
-          </ul>
-        </div>
-        <div className="transaction-table">
-          <h3>Credit Account</h3>
-          <ul className="list4">
-          {data.map((data, index) => (
-              <li key={index}>{data.creditAccountName}</li>
-            ))}
-          </ul>
-        </div>
-        <div className="transaction-table">
-          <h3>Amount</h3>
-          <ul className="list5">
-          {data.map((data, index) => (
-              <li key={index}>{data.amount}</li>
-            ))}
-          </ul>
+      <h1 className="tran-heading">Transaction/General journal</h1>
+      <div className="tran-container">
+        <div>
+          {data.length > 0 && (
+            <ReactTable
+              data={data}
+              columns={columns}
+              defaultPageSize={10}
+              pageSizeOptions={[10, 15, 20]}
+              keyExtractor={(item) => item.id} // Replace "id" with the unique identifier for each row
+            />
+          )}
         </div>
       </div>
     </>

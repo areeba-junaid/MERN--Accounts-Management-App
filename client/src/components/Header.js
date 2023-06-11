@@ -30,17 +30,11 @@ export default function Header() {
                   Balance sheet<i className="fas fa-caret-right"></i>
                 </Link>
               </li>
-              <li>
-                <Link to="cash-flow">Cash Flow</Link>
-              </li>
             </ul>
           </div>
         </li>
         <li>
-          <a href="#">Blog</a>
-        </li>
-        <li>
-          <a href="#">Contact us</a>
+          <Link to="TrialBalance">TrialBalance</Link>
         </li>
       </ul>
     </nav>

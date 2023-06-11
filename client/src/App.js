@@ -6,7 +6,7 @@ import Transaction from "./components/Transaction.js"
 import Income from "./components/Income.js"
 import OwnerEquity from "./components/OwnerEquity.js"
 import Balancesheet from "./components/Blancesheet.js"
-import Cashflow from "./components/Cashflow.js"
+import TrialBalance from "./components/TrialBalance.js";
 import { AccountContext } from "./Context/AccountContext";
 import {Route,Routes} from "react-router-dom"
 import { useState } from "react";
@@ -24,7 +24,7 @@ function App() {
         <Route path="/income" element={ <Income/>}></Route>
         <Route path="/owner-equity" element={ <OwnerEquity/>}></Route>
         <Route path="/balance-sheet" element={ <Balancesheet/>}></Route>
-        <Route path="/cash-flow" element={ <Cashflow/>}></Route>
+        <Route path="/TrialBalance" element={ <TrialBalance/>}></Route>  
          <Route path="*" element={<NotFound/>}></Route>       
       </Routes> 
       </AccountContext.Provider > 

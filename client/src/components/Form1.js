@@ -4,9 +4,10 @@ import { AccountContext } from "../Context/AccountContext";
 
 function Form1() {
   const { setAccount,info } = useContext(AccountContext);
-
+  
   const submitHandler = (event) => {
     event.preventDefault();
+    let head = parseInt(event.target.head.value);
     let name = event.target.name.value;
     if (name===null)
     {
@@ -22,10 +23,20 @@ function Form1() {
             alert("can't have duplicate names");
             return;
           }
+          if(info[i].headNo===3 && head===3)
+          {
+            alert("Owner Equity Account Already Exist");
+            return;
+          }
+          if(info[i].headNo===4 && head===4)
+          {
+            console.log(info[i].head, head);
+            alert("Owner Withrawal Account Already Exist");
+            return;
+          }
         }
     }
    
-    let head = parseInt(event.target.head.value);
     const body = {
       name: name,
       flag: 1,

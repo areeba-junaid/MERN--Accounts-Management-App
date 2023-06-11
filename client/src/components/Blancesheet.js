@@ -68,6 +68,8 @@ function Blancesheet() {
     return totalliability;
   };
 
+ 
+
   return (
     <>
       <div className="head-container">
@@ -79,7 +81,7 @@ function Blancesheet() {
           <ul className="l1">
           {data.map((item, index) => (
           item.headNo === 1 && (
-            <li key={index}>
+            <li className="list" key={index}>
               {item.name} | {item.sumDebit - item.sumCredit}
             </li>
           )
@@ -91,26 +93,26 @@ function Blancesheet() {
           <ul className="l1">
           {data.map((item, index) => (
           item.headNo === 2 && (
-            <li key={index}>
+            <li className="list" key={index}>
               {item.name} | {item.sumCredit - item.sumDebit}
             </li>
           )
           ))}
-          <li>Owner equity | {calculateOwnerEquity()}</li>
+          <li className="list" >Owner equity | {calculateOwnerEquity()}</li>
           </ul>
         </div>
       </div>
       <div className="total-container">
         <div className="total-column1">
           <h3>Total: </h3>
-          <ul className="list">
+          <ul >
             <li>${calculateTotalAssets()}</li>
           </ul>
         </div>
         <div className="total-column1">
           <h3>Total: </h3>
-          <ul className="list">
-            <li>${calculateTotalLiabilitiesAndEquity()}</li>
+          <ul >
+            <li> ${calculateTotalLiabilitiesAndEquity()}</li>
           </ul>
         </div>
       </div>

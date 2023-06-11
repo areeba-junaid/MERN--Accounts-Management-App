@@ -26,6 +26,18 @@ function Form2() {
       alert("Transaction occurs in different account");
       return;
     }
+   
+    if ((body.accountNameCredit === "cash" || body.accountNameDebit ==="cash") && body.entry===1) {
+      alert("We can't do adjustment in cash");
+      return;
+    }
+    
+    if( body.accountNameCredit ==="cash" && (info[cIndex].sumDebit-info[cIndex])< body.amount)
+      {
+        alert("You don't have enough balance in cash account");
+        return;
+      }
+    
 
     axios
       .post("http://localhost:5000/api/accounts/update", body)
