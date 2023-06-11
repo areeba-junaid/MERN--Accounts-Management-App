@@ -93,7 +93,7 @@ function TrialBalance() {
               data={getTrialBalanceData()}
               columns={columns}
               defaultPageSize={8}
-              pageSizeOptions={[10, 15, 20]}
+              pageSizeOptions={[5,8,10,]}
               keyExtractor={(item) => item.id} // Replace "id" with the unique identifier for each row
             />
           )}

@@ -32,10 +32,12 @@ function Form2() {
       return;
     }
     
-    if( body.accountNameCredit ==="cash" && (info[cIndex].sumDebit-info[cIndex])< body.amount)
+    if( body.accountNameCredit ==="cash" )
       {
-        alert("You don't have enough balance in cash account");
-        return;
+        let result = info[cIndex].sumDebit-info[cIndex].sumCredit;
+        if(result< body.amount)
+        {alert("You don't have enough balance in cash account");
+        return;}
       }
     
 
