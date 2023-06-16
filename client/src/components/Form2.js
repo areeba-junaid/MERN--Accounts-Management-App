@@ -35,6 +35,7 @@ function Form2() {
     if( body.accountNameCredit ==="cash" )
       {
         let result = info[cIndex].sumDebit-info[cIndex].sumCredit;
+        console.log(result)
         if(result< body.amount)
         {alert("You don't have enough balance in cash account");
         return;}
